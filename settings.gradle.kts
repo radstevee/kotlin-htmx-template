@@ -1,1 +1,1 @@
-rootProject.name = "com.example.htmx-kotlin-template"
+rootProject.name = "htmx-kotlin-template"

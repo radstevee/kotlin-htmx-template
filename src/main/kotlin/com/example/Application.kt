@@ -2,8 +2,6 @@ package com.example
 
 import com.example.plugins.configureHTTP
 import com.example.plugins.configureSecurity
-import com.example.plugins.configureSerialization
-import com.example.plugins.configureTemplating
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.Application
 import io.ktor.server.application.call
@@ -27,8 +25,6 @@ fun main() {
 }
 
 fun Application.module() {
-    configureTemplating()
-    configureSerialization()
     configureHTTP()
     configureSecurity()
     configureRouting()
@@ -43,11 +39,11 @@ fun FlowContent.home() = div {
             classes = setOf("container", "mx-auto", "py-4")
             h1 {
                 classes = setOf("text-3xl", "font-bold")
-                attributes["hx-get"] = "/hello" // Use HTMX attribute to fetch data from /hello endpoint
-                attributes["hx-trigger"] = "click" // Trigger the fetch on click
-                attributes["hx-swap"] = "innerHTML"
-                attributes["hx-target"] = "#home"
-                attributes["hx-boost"] = "true"
+                hxGet = "/hello"
+                hxTrigger = "click"
+                hxSwap = "innerHTML"
+                hxTarget = "#home"
+                hxBoost = true
                 +"Hello, Ktor!"
             }
         }
@@ -62,11 +58,11 @@ fun FlowContent.hello() = div {
             classes = setOf("container", "mx-auto", "py-4")
             h1 {
                 classes = setOf("text-3xl", "font-bold")
-                attributes["hx-get"] = "/" // Use HTMX attribute to fetch data from /hello endpoint
-                attributes["hx-trigger"] = "click" // Trigger the fetch on click
-                attributes["hx-swap"] = "innerHTML"
-                attributes["hx-target"] = "#home"
-                attributes["hx-boost"] = "true"
+                hxGet = "/"
+                hxTrigger = "click"
+                hxSwap = "innerHTML"
+                hxTarget = "#home"
+                hxBoost = true
                 +"Hello, HTMX!"
             }
         }
